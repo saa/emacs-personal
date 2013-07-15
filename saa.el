@@ -2,10 +2,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
-(set-default-font "Monaco-13")
-
-;;(disable-theme 'zenburn)
-;;(load-theme 'solarized-light t)
+(set-default-font "Menlo-13")
 
 ;; HOOKS
 (defun disable-flyspell-mode ()
@@ -79,9 +76,11 @@ A place is considered 1 character columns."
 (global-set-key (kbd "C-c C-b") 'comment-dwim)
 (global-set-key (kbd "C-c k") 'delete-region)
 (global-set-key (kbd "C-c C-f") 'ns-toggle-fullscreen)
-;;(windmove-default-keybindings 'meta)
+
+(global-set-key (kbd "C-c ]") 'comment-dwim)
 
 ;; SETTINGS
+
 (setq-default tab-width 4)
 (global-rainbow-delimiters-mode 1)
 
@@ -94,10 +93,11 @@ A place is considered 1 character columns."
  whitespace-style '(face
                     trailing
                     lines
+                    tabs
                     space-before-tab space-after-tab
                     indentation))
-(global-whitespace-mode t)
 
+(global-whitespace-mode t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -112,7 +112,7 @@ A place is considered 1 character columns."
 
 (global-auto-revert-mode 1)
 
-;; auto-complete
+;; Auto-complete
 (require 'auto-complete nil t)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (require 'auto-complete-config nil t)
@@ -127,35 +127,40 @@ A place is considered 1 character columns."
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 (setq jedi:setup-keys t)
 
-;; tramp
+;; Tramp
 (setq tramp-default-method "ssh")
 
-;; clojure
+;; Clojure
 (add-hook 'clojure-mode-hook 'paredit-mode)
 
 ;; erlang
-(require 'erlang-start)
+;; (require 'erlang-start)
 
-(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
-(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
+;; (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
 
-(require 'erlang-flymake)
+;; (require 'erlang-flymake)
 
-(setq erlang-root-dir "/usr/local/Cellar/erlang/R15B03-1/lib/erlang")
-(setq erlang-man-root-dir "/usr/local/Cellar/erlang/R15B03-1/share/man")
-(add-to-list 'load-path
-             (concat erlang-root-dir "/lib/tools-2.6.8/emacs"))
-(add-to-list 'exec-path
-             (concat erlang-root-dir "/bin"))
-(add-to-list 'ac-modes 'erlang-mode)
+;; (setq erlang-root-dir "/usr/local/Cellar/erlang/R15B03-1/lib/erlang")
+;; (setq erlang-man-root-dir "/usr/local/Cellar/erlang/R15B03-1/share/man")
+;; (add-to-list 'load-path
+;;              (concat erlang-root-dir "/lib/tools-2.6.8/emacs"))
+;; (add-to-list 'exec-path
+;;              (concat erlang-root-dir "/bin"))
+;; (add-to-list 'ac-modes 'erlang-mode)
 
-(defun my-erlang-mod-hook ()
-  (setq inferior-erlang-machine-options '("-sname" "emacs"))
-  (imenu-add-to-menubar "imenu")
-  (local-set-key [return] 'newline-and-indent))
+;; (defun my-erlang-mod-hook ()
+;;   (setq inferior-erlang-machine-options '("-sname" "emacs"))
+;;   (imenu-add-to-menubar "imenu")
+;;   (local-set-key [return] 'newline-and-indent))
 
-(add-hook 'erlang-mode-hook 'my-erlang-mod-hook)
+;; (add-hook 'erlang-mode-hook 'my-erlang-mod-hook)
 
-(add-to-list 'load-path "~/.emacs.d/vendor/distel/elisp")
-(require 'distel)
-(distel-setup)
+;; (add-to-list 'load-path "~/.emacs.d/vendor/distel/elisp")
+;; (require 'distel)
+;; (distel-setup)
+
+
+;; Jabber
+;; (add-to-list 'load-path "~/.emacs.d/elpa/emacs-jabber-0.8.92")
+;; (require 'jabber-autoloads)
