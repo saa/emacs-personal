@@ -45,7 +45,6 @@
                     trailing
                     lines
                     tabs
-                    spaces
                     space-before-tab space-after-tab
                     indentation))
 
