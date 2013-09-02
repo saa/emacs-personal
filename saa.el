@@ -78,3 +78,4 @@
 ;; Erlang
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
+(edts-project-override "~/erl-project" '(:lib-dirs '("lib", "deps", "ebin")))
