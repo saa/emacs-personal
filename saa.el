@@ -35,7 +35,10 @@
 (smex-initialize)
 (require 'ace-jump-mode)
 
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+
 (global-rainbow-delimiters-mode 1)
 
 (mouse-avoidance-mode 'cat-and-mouse)
@@ -54,6 +57,26 @@
 (global-whitespace-mode t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (pending-delete-mode t)
+
+(defun shift-region (distance)
+  (let ((mark (mark)))
+    (save-excursion
+      (indent-rigidly (region-beginning) (region-end) distance)
+      (push-mark mark t t)
+      ;; Tell the command loop not to deactivate the mark
+      ;; for transient mark mode
+      (setq deactivate-mark nil))))
+
+(defun shift-right ()
+  (interactive)
+  (shift-region 1))
+
+(defun shift-left ()
+  (interactive)
+  (shift-region -1))
+
+(global-set-key (kbd "C-c .") 'shift-right)
+(global-set-key (kbd "C-c ,") 'shift-left)
 
 (require 'paren)
 (show-paren-mode +1)
