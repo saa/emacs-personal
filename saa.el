@@ -8,10 +8,14 @@
 (setq prelude-guru nil)
 (setq prelude-flyspell nil)
 (global-flycheck-mode -1)
+(electric-indent-mode)
 
 ;; Functions
 (defun disable-flyspell-mode ()
   (flyspell-mode -1))
+
+(defun set-newline-and-indent ()
+  (local-set-key (kbd "RET") 'newline-and-indent))
 
 ;; Hooks
 (remove-hook 'mouse-leave-buffer-hook #'prelude-auto-save-command)
@@ -35,9 +39,6 @@
 (smex-initialize)
 (require 'ace-jump-mode)
 
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
 (global-rainbow-delimiters-mode 1)
 (mouse-avoidance-mode 'cat-and-mouse)
 
@@ -53,6 +54,12 @@
                     indentation))
 
 (global-whitespace-mode t)
+
+;; Indentation
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq-default indent-line-function 'insert-tab)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (pending-delete-mode t)
 
@@ -79,6 +86,9 @@
 ;; Erlang
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
+(setq erlang-indent-level '4)
+(setq erlang-argument-indent '4)
+(setq erlang-indent-guard '4)
 
 ;; Ocaml
 ;; (add-to-list 'auto-mode-alist
