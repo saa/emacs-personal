@@ -17,6 +17,14 @@
 (defun set-newline-and-indent ()
   (local-set-key (kbd "RET") 'newline-and-indent))
 
+(defun insert-erl-separator ()
+  (interactive)
+  (insert "
+%%==============================================================================
+%% Example
+%%==============================================================================")
+  (next-line))
+
 ;; Hooks
 (remove-hook 'mouse-leave-buffer-hook #'prelude-auto-save-command)
 (remove-hook 'message-mode-hook 'prelude-turn-on-flyspell)
@@ -34,6 +42,7 @@
 (global-set-key (kbd "C-c '") 'comment-dwim)
 (global-set-key (kbd "C-c k") 'kill-region)
 (global-set-key (kbd "C-c l") 'kill-whole-line)
+(global-set-key (kbd "C-c \\") 'insert-erl-separator)
 
 (require 'smex)
 (smex-initialize)
