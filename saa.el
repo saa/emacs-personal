@@ -18,7 +18,6 @@
 (add-hook 'prog-mode-hook 'undo-tree-mode)
 (add-hook 'prog-mode-hook 'disable-flyspell-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Main
 (set-default-font "Menlo-13")
@@ -39,8 +38,9 @@
               fill-column 100)
 
 (pending-delete-mode t)
-(electric-indent-mode)
+(electric-indent-mode t)
 (electric-pair-mode t)
+(electric-layout-mode t)
 
 ;; Functions
 (defun disable-flyspell-mode ()
@@ -143,21 +143,10 @@
 (diminish 'undo-tree-mode)
 (defalias 'redo 'undo-tree-redo)
 
-;; Meaningful names for buffers with the same name
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward
-      uniquify-separator ":"
-      uniquify-after-kill-buffer-p t
-      uniquify-ignore-buffers-re "^\\*")
-
 ;; IDO
 (require 'ido)
-(require 'ido-ubiquitous)
-(require 'flx-ido)
 (ido-mode 'both)
 (ido-everywhere t)
-(ido-ubiquitous-mode +1)
-(flx-ido-mode +1)
 (setq ido-use-faces nil)
 (setq ido-case-fold t
       ido-confirm-unique-completion nil
@@ -189,9 +178,6 @@
                     space-before-tab space-after-tab
                     indentation))
 (global-whitespace-mode t)
-
-;; Tramp
-(setq tramp-default-method "ssh")
 
 ;; Magit
 (require 'magit)
