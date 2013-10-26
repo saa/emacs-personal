@@ -42,14 +42,6 @@
 (electric-indent-mode)
 (electric-pair-mode t)
 
-(require 'smex)
-(smex-initialize)
-
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
-(require 'ace-jump-mode)
-
 ;; Functions
 (defun disable-flyspell-mode ()
   (flyspell-mode -1))
@@ -92,6 +84,14 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 (global-set-key (kbd "C-c m") 'magit-status)
 (global-set-key (kbd "C-c C-j") 'join-line)
+
+(require 'smex)
+(smex-initialize)
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
+(require 'ace-jump-mode)
 
 ;; Auto-complete
 (require 'auto-complete-config)
