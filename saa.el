@@ -94,8 +94,6 @@
 (global-set-key (kbd "C-c C-j") 'join-line)
 
 ;; Auto-complete
-;; TODO:
-;;
 (require 'auto-complete-config)
 (ac-config-default)
 (setq ac-compish-file "~/.emacs.d/ac-comphist.dat"
