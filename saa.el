@@ -89,7 +89,6 @@
 (global-set-key (kbd "<s-down>") 'move-line-down)
 (global-set-key (kbd "C-c <up>") 'move-text-up)
 (global-set-key (kbd "C-c <down>") 'move-text-down)
-(global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C-0") 'text-scale-normal-size)
 (global-set-key (kbd "C-.") 'textmate-shift-right)
 (global-set-key (kbd "C-,") 'textmate-shift-left)
