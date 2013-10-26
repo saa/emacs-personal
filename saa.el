@@ -31,8 +31,8 @@
 (custom-set-variables '(shell-file-name "zsh"))
 
 (setq-default cursor-in-non-selected-windows nil
-              use-dialog-box nil
               indent-tabs-mode nil
+              use-dialog-box nil
               tab-width 4
               case-fold-search t
               default-directory "~"
