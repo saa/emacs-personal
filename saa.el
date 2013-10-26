@@ -182,13 +182,13 @@
 ;; Tramp
 (setq tramp-default-method "ssh")
 
+;; Magit
+(require 'magit)
+(setq magit-emacsclient-executable nil)
+
 ;; Erlang
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
 (setq erlang-indent-level 4)
 (setq erlang-argument-indent 4)
 (setq erlang-indent-guard 4)
-
-;; Magit
-(require 'magit)
-(setq magit-emacsclient-executable nil)
