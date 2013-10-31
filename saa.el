@@ -20,7 +20,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Main
-(set-default-font "Menlo-13")
+(set-default-font "Menlo-14")
 (setq inhibit-startup-screen t
       initial-scratch-message nil)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -55,6 +55,30 @@
 ")
   (next-line))
 
+(defun insert-erl-fun-separator ()
+  (interactive)
+  (insert "
+%%------------------------------------------------------------------------------
+%% @doc
+%% Doc example.
+%% @end
+%%
+%%------------------------------------------------------------------------------
+")
+  (next-line))
+
+(defun insert-erl-header ()
+  (interactive)
+  (goto-line 1)
+  (insert "
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @author Example <example@example.com>
+%% @copyright (C) 2013, Example
+%% @doc
+%% @end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+"))
+
 (defun move-line-up ()
   (interactive)
   (move-line -1))
@@ -85,6 +109,7 @@
 (global-set-key (kbd "C-c k") 'kill-region)
 (global-set-key (kbd "C-c l") 'kill-whole-line)
 (global-set-key (kbd "C-c \\") 'insert-erl-separator)
+(global-set-key (kbd "C-c ;") 'insert-erl-fun-separator)
 (global-set-key (kbd "<s-up>") 'move-line-up)
 (global-set-key (kbd "<s-down>") 'move-line-down)
 (global-set-key (kbd "C-c <up>") 'move-text-up)
@@ -184,6 +209,13 @@
 (setq magit-emacsclient-executable nil)
 
 ;; Erlang
+(setq load-path (cons  "/usr/local/lib/erlang/lib/tools-2.6.12/emacs"
+                       load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+(add-to-list 'ac-modes 'erlang-mode)
+
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
 (setq erlang-indent-level 4)
