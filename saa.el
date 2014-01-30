@@ -20,6 +20,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Main
+(disable-theme 'zenburn)
+(load-theme 'solarized-light t)
 (set-default-font "Menlo-14")
 (setq inhibit-startup-screen t
       initial-scratch-message nil)
@@ -39,7 +41,6 @@
 
 (pending-delete-mode t)
 (electric-indent-mode t)
-(electric-pair-mode t)
 (electric-layout-mode t)
 
 ;; Functions
@@ -128,16 +129,7 @@
 (exec-path-from-shell-initialize)
 
 (require 'ace-jump-mode)
-
-;; Auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-compish-file "~/.emacs.d/ac-comphist.dat"
-      ac-candidate-limit 20
-      ac-ignore-case nil)
-(global-auto-complete-mode)
-
-;; Diminish keeps the modeline tidy
+(require 'auto-complete)
 (require 'diminish)
 
 ;; Highlight
@@ -194,7 +186,7 @@
 ;; Whitespace
 (require 'whitespace)
 (setq
- whitespace-line-column 80
+ whitespace-line-column 150
  whitespace-style '(face
                     trailing
                     lines
@@ -215,9 +207,82 @@
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 (add-to-list 'ac-modes 'erlang-mode)
+(add-hook 'erlang-mode-hook 'electric-pair-mode)
+;;(Add-Hook 'erlang-mode-hook 'paredit-mode)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
-(setq erlang-indent-level 4)
-(setq erlang-argument-indent 4)
-(setq erlang-indent-guard 4)
+;; (setq erlang-indent-level 4)
+;; (setq erlang-argument-indent 4)
+;; (setq erlang-indent-guard 4)
+
+;; projectile
+
+
+;; Protocol Buffer
+(require 'protobuf-mode)
+
+;; Ocaml
+;; -- Tuareg mode -----------------------------------------
+(require 'tuareg)
+(setq auto-mode-alist
+      (append '(("\\.ml[ily]?$" . tuareg-mode))
+          auto-mode-alist))
+
+;; -- Tweaks for OS X -------------------------------------
+;; Tweak for problem on OS X where Emacs.app doesn't run the right
+;; init scripts when invoking a sub-shell
+(cond
+ ((eq window-system 'ns) ; macosx
+  ;; Invoke login shells, so that .profile or .bash_profile is read
+  (setq shell-command-switch "-lc")))
+
+;; -- opam and utop setup --------------------------------
+;; Setup environment variables using opam
+(defun opam-vars ()
+  (let* ((x (shell-command-to-string "opam config env"))
+     (x (split-string x "\n"))
+     (x (remove-if (lambda (x) (equal x "")) x))
+     (x (mapcar (lambda (x) (split-string x ";")) x))
+     (x (mapcar (lambda (x) (car x)) x))
+     (x (mapcar (lambda (x) (split-string x "=")) x))
+     )
+    x))
+(dolist (var (opam-vars))
+  (setenv (car var) (substring (cadr var) 1 -1)))
+;; The following simpler alternative works as of opam 1.1
+;; (dolist
+;;    (var (car (read-from-string
+;;         (shell-command-to-string "opam config env --sexp"))))
+;;  (setenv (car var) (cadr var)))
+;; Update the emacs path
+(setq exec-path (split-string (getenv "PATH") path-separator))
+;; Update the emacs load path
+(push (concat (getenv "OCAML_TOPLEVEL_PATH")
+              "/../../share/emacs/site-lisp") load-path)
+;; Automatically load utop.el
+(autoload 'utop "utop" "Toplevel for OCaml" t)
+(autoload 'utop-setup-ocaml-buffer "utop" "Toplevel for OCaml" t)
+(add-hook 'tuareg-mode-hook 'utop-setup-ocaml-buffer)
+
+;; -- merlin setup ---------------------------------------
+
+(require 'merlin)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+;; So you can do it on a mac, where `C-<up>` and `C-<down>` are used
+;; by spaces.
+(define-key merlin-mode-map
+  (kbd "C-c <up>") 'merlin-type-enclosing-go-up)
+(define-key merlin-mode-map
+  (kbd "C-c <down>") 'merlin-type-enclosing-go-down)
+(set-face-background 'merlin-type-face "#88FF44")
+
+;; -- enable auto-complete -------------------------------
+;; Not required, but useful along with merlin-mode
+(require 'auto-complete)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
+
+(load-file (expand-file-name "~/.emacs.d/vendor/ocp-indent.el"))
+
+;; Clojure
+(add-hook 'clojure-mode-hook 'paredit-mode)
