@@ -7,8 +7,6 @@
 (setq prelude-flyspell nil)
 (global-flycheck-mode -1)
 
-;; (disable-theme 'zenburn)
-;; (load-theme 'solarized-dark t)
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 (setq inhibit-startup-screen t
@@ -17,4 +15,3 @@
 (custom-set-variables '(shell-file-name "zsh"))
 (ido-vertical-mode)
 (setq-default tab-width 4)
-(electric-indent-mode +1)
