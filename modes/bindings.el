@@ -1,0 +1,8 @@
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "C-c '") 'comment-dwim)
+(global-set-key (kbd "C-c k") 'kill-region)
+(global-set-key (kbd "s-<up>") 'move-text-up)
+(global-set-key (kbd "s-<down>") 'move-text-down)
+(global-set-key (kbd "C-0") 'text-scale-normal-size)
+(global-set-key (kbd "C-.") 'textmate-shift-right)
+(global-set-key (kbd "C-,") 'textmate-shift-left)
