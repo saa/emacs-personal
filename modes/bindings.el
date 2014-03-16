@@ -6,3 +6,4 @@
 (global-set-key (kbd "C-0") 'text-scale-normal-size)
 (global-set-key (kbd "C-.") 'textmate-shift-right)
 (global-set-key (kbd "C-,") 'textmate-shift-left)
+(global-set-key (kbd "RET") 'newline-and-indent)

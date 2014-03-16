@@ -17,3 +17,4 @@
 (custom-set-variables '(shell-file-name "zsh"))
 (ido-vertical-mode)
 (setq-default tab-width 4)
+(electric-indent-mode +1)

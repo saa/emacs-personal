@@ -8,6 +8,5 @@
 (setq erlang-indent-guard 4)
 (add-to-list 'ac-modes 'erlang-mode)
 (add-hook 'erlang-mode-hook 'electric-pair-mode)
-(add-hook 'erlang-mode-hook 'electric-indent-mode)
 (add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
