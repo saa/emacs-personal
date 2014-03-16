@@ -40,6 +40,5 @@
                     tabs
                     space-before-tab space-after-tab
                     indentation))
-(global-whitespace-mode t)
 
 (require 'protobuf-mode)
