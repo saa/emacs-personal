@@ -13,3 +13,8 @@
 (defun textmate-shift-left (&optional arg)
   (interactive)
   (textmate-shift-right (* -1 (or arg 1))))
+
+(defun font-lock-comment-annotations ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):"
+          1 font-lock-warning-face t))))

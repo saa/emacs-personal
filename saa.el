@@ -39,3 +39,4 @@
 (add-hook 'erlang-mode-hook (lambda () (autopair-mode)))
 (add-hook 'erlang-mode-hook
           (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+(add-hook 'erlang-mode-hook 'font-lock-comment-annotations)
