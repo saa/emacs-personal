@@ -11,10 +11,8 @@
   (load-file (expand-file-name file user-init-dir)))
 
 (load-user-file "personal/modes/main.el")
-(load-user-file "personal/modes/adv.el")
-(load-user-file "personal/modes/ocaml.el")
 (load-user-file "personal/modes/functions.el")
-(load-user-file "personal/modes/bindings.el")
+(load-user-file "personal/modes/ocaml.el")
 
 ;; Hooks
 (remove-hook 'mouse-leave-buffer-hook #'prelude-auto-save-command)
@@ -24,6 +22,17 @@
 (add-hook 'prog-mode-hook 'undo-tree-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'whitespace-mode)
+
+;; Bindings
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "C-c '") 'comment-dwim)
+(global-set-key (kbd "C-c k") 'kill-region)
+(global-set-key (kbd "s-<up>") 'move-text-up)
+(global-set-key (kbd "s-<down>") 'move-text-down)
+(global-set-key (kbd "C-0") 'text-scale-normal-size)
+(global-set-key (kbd "C-.") 'textmate-shift-right)
+(global-set-key (kbd "C-,") 'textmate-shift-left)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; Erlang
 (add-hook 'erlang-mode-hook (load-user-file "personal/modes/erlang.el"))
