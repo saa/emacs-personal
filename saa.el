@@ -8,7 +8,14 @@
 (global-flycheck-mode -1)
 
 (disable-theme 'zenburn)
-(load-theme 'base16-chalk t)
+
+(setq solarized-distinct-fringe-background t)
+(setq solarized-high-contrast-mode-line t)
+(setq solarized-use-less-bold t)
+(setq solarized-use-more-italic t)
+(setq solarized-emphasize-indicators nil)
+(load-theme 'solarized-dark t)
+
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 (setq inhibit-startup-screen t
@@ -17,6 +24,8 @@
 (custom-set-variables '(shell-file-name "zsh"))
 (ido-vertical-mode)
 (setq-default tab-width 4)
+
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (require 'auto-complete)
 (setq ac-quick-help-delay 0.5)
@@ -54,7 +63,6 @@
 
 (require 'whitespace)
 (setq
- whitespace-line-column 120
  whitespace-style '(face
                     trailing
                     lines
@@ -62,8 +70,6 @@
                     tabs
                     space-before-tab space-after-tab
                     indentation))
-
-(require 'protobuf-mode)
 
 ;; Functions
 (defun text-scale-normal-size ()
@@ -129,5 +135,8 @@
 (setq erlang-indent-guard 4)
 
 (add-to-list 'ac-modes 'erlang-mode)
-(add-to-list 'load-path "~/.emacs.d/vendor/edts")
 (require 'edts-start)
+
+(add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
+(add-to-list 'auto-mode-alist '("sys.config" . erlang-mode))
+(add-to-list 'auto-mode-alist '("app.config" . erlang-mode))
