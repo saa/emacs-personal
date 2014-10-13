@@ -10,9 +10,7 @@
 (disable-theme 'zenburn)
 
 (setq solarized-distinct-fringe-background t)
-(setq solarized-high-contrast-mode-line t)
 (setq solarized-use-less-bold t)
-(setq solarized-use-more-italic t)
 (setq solarized-emphasize-indicators nil)
 (load-theme 'solarized-dark t)
 
@@ -119,6 +117,9 @@
   '(define-key prelude-mode-map (kbd "s-m pl") 'magit-pull))
 (eval-after-load 'prelude-mode
   '(define-key prelude-mode-map (kbd "s-'") 'comment-dwim))
+
+;; Go
+(require 'go-autocomplete)
 
 ;; Erlang
 (add-hook 'erlang-mode-hook (lambda () (autopair-mode)))
