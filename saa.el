@@ -14,6 +14,8 @@
 (setq solarized-emphasize-indicators nil)
 (load-theme 'solarized-dark t)
 
+(toggle-frame-fullscreen)
+
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 (setq inhibit-startup-screen t
@@ -120,6 +122,7 @@
 
 ;; Go
 (require 'go-autocomplete)
+(require 'auto-complete-config)
 
 ;; Erlang
 (add-hook 'erlang-mode-hook (lambda () (autopair-mode)))
