@@ -102,14 +102,15 @@
 (add-hook 'erlang-mode-hook (lambda () (autopair-mode)))
 (add-hook 'erlang-mode-hook
           (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
-
 (add-hook 'erlang-mode-hook 'font-lock-comment-annotations)
-;; (setq erlang-root-dir "/usr/local/lib/erlang")
-;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+
+(add-hook 'after-init-hook 'my-after-init-hook)
+(defun my-after-init-hook ()
+  (require 'edts-start))
+
 (require 'erlang-start)
 
 (add-to-list 'ac-modes 'erlang-mode)
-(require 'edts-start)
 
 (add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
 (add-to-list 'auto-mode-alist '("sys.config" . erlang-mode))
