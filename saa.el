@@ -2,6 +2,7 @@
                                  golden-ratio rust-mode
                                  solarized-theme
                                  ido-vertical-mode
+                                 autopair
                                  exec-path-from-shell))
 
 (scroll-bar-mode -1)
@@ -17,10 +18,6 @@
 (global-flycheck-mode -1)
 
 (disable-theme 'zenburn)
-
-(setq solarized-distinct-fringe-background t)
-(setq solarized-use-less-bold t)
-(setq solarized-emphasize-indicators nil)
 (load-theme 'solarized-dark t)
 
 (set-frame-font "Menlo-14")
@@ -33,16 +30,12 @@
 
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-(require 'auto-complete)
-(setq ac-quick-help-delay 0.5)
-
 (require 'smex)
 (smex-initialize)
 
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-(require 'ace-jump-mode)
 (require 'diminish)
 
 (require 'windmove)
@@ -68,6 +61,7 @@
 
 (require 'whitespace)
 (setq
+ whitespace-line-column 200
  whitespace-style '(face
                     trailing
                     lines
@@ -110,13 +104,9 @@
           (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (add-hook 'erlang-mode-hook 'font-lock-comment-annotations)
-(setq erlang-root-dir "/usr/local/lib/erlang")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+;; (setq erlang-root-dir "/usr/local/lib/erlang")
+;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
-
-(setq erlang-indent-level 4)
-(setq erlang-argument-indent 4)
-(setq erlang-indent-guard 4)
 
 (add-to-list 'ac-modes 'erlang-mode)
 (require 'edts-start)
