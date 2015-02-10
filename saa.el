@@ -108,8 +108,6 @@
 (defun my-after-init-hook ()
   (require 'edts-start))
 
-(require 'erlang-start)
-
 (add-to-list 'ac-modes 'erlang-mode)
 
 (add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
