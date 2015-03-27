@@ -21,6 +21,8 @@
 (disable-theme 'zenburn)
 (load-theme 'solarized-dark t)
 
+(global-flycheck-mode -1)
+
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 
