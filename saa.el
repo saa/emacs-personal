@@ -1,3 +1,5 @@
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 (prelude-require-packages '(edts smex auto-complete
                                  golden-ratio rust-mode
                                  solarized-theme
@@ -12,10 +14,9 @@
 (setq inhibit-startup-screen t
       initial-scratch-message nil)
 
-(flyspell-mode-off)
+;; Prelude
 (setq prelude-guru nil)
 (setq prelude-flyspell nil)
-(global-flycheck-mode -1)
 
 (disable-theme 'zenburn)
 (load-theme 'solarized-dark t)
@@ -23,12 +24,12 @@
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 
+(setq prelude-clean-whitespace-on-save nil)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (custom-set-variables '(shell-file-name "zsh"))
 (ido-vertical-mode)
 (setq-default tab-width 4)
-
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (require 'smex)
 (smex-initialize)
@@ -61,7 +62,7 @@
 
 (require 'whitespace)
 (setq
- whitespace-line-column 200
+ whitespace-line-column 120
  whitespace-style '(face
                     trailing
                     lines
@@ -81,7 +82,6 @@
 (add-hook 'text-mode-hook 'turn-off-flyspell t)
 (add-hook 'prog-mode-hook 'turn-off-flyspell t)
 (add-hook 'prog-mode-hook 'undo-tree-mode)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
 ;; Bindings
@@ -92,7 +92,8 @@
 (global-set-key (kbd "s-f") 'projectile-find-file)
 (eval-after-load 'prelude-mode
   '(define-key prelude-mode-map (kbd "s-'") 'comment-dwim))
-;; Magit
+
+;; Magit bindings
 (eval-after-load 'prelude-mode
   '(define-key prelude-mode-map (kbd "s-m co") 'magit-checkout))
 (eval-after-load 'prelude-mode
@@ -113,3 +114,6 @@
 (add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
 (add-to-list 'auto-mode-alist '("sys.config" . erlang-mode))
 (add-to-list 'auto-mode-alist '("app.config" . erlang-mode))
+
+;; Elixir
+(require 'alchemist)
