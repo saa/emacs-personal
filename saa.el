@@ -23,7 +23,7 @@
 
 (global-flycheck-mode -1)
 
-(set-frame-font "SourceCode Pro Lighth-14")
+(set-frame-font "Source Code Pro-14")
 
 (setq prelude-clean-whitespace-on-save nil)
 
