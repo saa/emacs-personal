@@ -23,8 +23,7 @@
 
 (global-flycheck-mode -1)
 
-(set-frame-font "Menlo-14")
-(set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
+(set-frame-font "SourceCode Pro Lighth-14")
 
 (setq prelude-clean-whitespace-on-save nil)
 
