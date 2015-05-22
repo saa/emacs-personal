@@ -5,6 +5,7 @@
                                  solarized-theme
                                  ido-vertical-mode
                                  autopair
+                                 alchemist
                                  exec-path-from-shell))
 
 (scroll-bar-mode -1)
@@ -23,9 +24,10 @@
 
 (global-flycheck-mode -1)
 
-(set-frame-font "Source Code Pro-14")
+(set-frame-font "Menlo-14")
+(set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 
-(setq prelude-clean-whitespace-on-save nil)
+;; (setq prelude-clean-whitespace-on-save nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (custom-set-variables '(shell-file-name "zsh"))
@@ -105,6 +107,7 @@
 (add-hook 'erlang-mode-hook
           (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 (add-hook 'erlang-mode-hook 'font-lock-comment-annotations)
+(add-hook 'erlang-mode-hook 'prelude-enable-whitespace)
 
 (add-hook 'after-init-hook 'my-after-init-hook)
 (defun my-after-init-hook ()
@@ -116,5 +119,12 @@
 (add-to-list 'auto-mode-alist '("sys.config" . erlang-mode))
 (add-to-list 'auto-mode-alist '("app.config" . erlang-mode))
 
+;; JS
+(add-to-list 'auto-mode-alist '("*.jsx" . web-mode))
+
 ;; Elixir
 (require 'alchemist)
+
+;; Clojure
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
