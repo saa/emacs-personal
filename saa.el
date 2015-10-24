@@ -27,12 +27,14 @@
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
 
-;; (setq prelude-clean-whitespace-on-save nil)
+(setq prelude-clean-whitespace-on-save nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (custom-set-variables '(shell-file-name "zsh"))
 (ido-vertical-mode)
-(setq-default tab-width 4)
+
+(setq tab-width 4)
+(setq tab-stop-list (number-sequence 4 200 4))
 
 (require 'smex)
 (smex-initialize)
@@ -112,8 +114,6 @@
 (add-hook 'after-init-hook 'my-after-init-hook)
 (defun my-after-init-hook ()
   (require 'edts-start))
-
-(add-to-list 'ac-modes 'erlang-mode)
 
 (add-to-list 'auto-mode-alist '("rebar.config" . erlang-mode))
 (add-to-list 'auto-mode-alist '("sys.config" . erlang-mode))
