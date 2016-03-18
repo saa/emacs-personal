@@ -22,7 +22,7 @@
 (disable-theme 'zenburn)
 (load-theme 'solarized-dark t)
 
-;; (global-flycheck-mode -1)
+(global-flycheck-mode -1)
 
 (set-frame-font "Menlo-14")
 (set-fontset-font "fontset-default" 'cyrillic '("menlo" . "ISO10646-1"))
@@ -43,6 +43,7 @@
 (exec-path-from-shell-initialize)
 
 (require 'diminish)
+(require 'imenu)
 
 (require 'windmove)
 (windmove-default-keybindings)
@@ -95,6 +96,7 @@
 (global-set-key (kbd "s-<up>") 'move-text-up)
 (global-set-key (kbd "s-<down>") 'move-text-down)
 (global-set-key (kbd "s-f") 'projectile-find-file)
+(global-set-key (kbd "s-i") 'imenu)
 (eval-after-load 'prelude-mode
   '(define-key prelude-mode-map (kbd "s-'") 'comment-dwim))
 
